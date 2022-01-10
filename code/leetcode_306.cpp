@@ -21,7 +21,7 @@ public:
         }
         reverse(ans.begin(), ans.end());
         return ans;
-    };
+    }
 
     bool isValid(string &num, int i, int j, int k) {
         if (num[i] == '0' && j != i + 1)return false;
@@ -30,12 +30,12 @@ public:
         string num2 = num.substr(j, k - j);
         string sum = add(num1, num2);
         if (sum.size() + k > num.size()) return false;
-        for (int s = k; s <= k - 1 + sum.size(); s++) {
-            if (num[s] != num[s - k])return false;
+        for (int s = 0; s <=  sum.size()-1; s++) {
+            if (sum[s] != num[k+s])return false;
         }
         if (sum.size() + k == num.size())return true;
         return isValid(num, j, k, sum.size() + k);
-    };
+    }
 
     bool isAdditiveNumber(string num) {
         int n = num.size();
@@ -44,6 +44,7 @@ public:
                 if (isValid(num, 0, i, j))return true;
             }
         }
+        return false;
     }
 };
 
